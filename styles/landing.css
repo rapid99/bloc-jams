@@ -45,6 +45,16 @@
      -moz-transition-delay: 0.2s;
      transition-delay: 0.2s;
  }
+
+.point:hover{
+    transition-property: opacity font-size color border;
+    transition-duration: 0.2s;
+    opacity: 0.8;
+    font-size: 105%;
+    color: rgb(233,50,117);
+    border: 3px dashed rgb(233,50,117);
+}
+
  
  .point .point-title {
      font-size: 1.25rem;
