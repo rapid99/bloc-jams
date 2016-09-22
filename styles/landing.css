@@ -30,6 +30,11 @@
      position: relative;
  }
  
+/*
+.third {
+    width: 33%;
+}
+*/
  .point {
      position: relative;
      padding: 2rem;
@@ -47,6 +52,8 @@
  }
 
 .point:hover{
+    -webkit-transition-property: font-size color border;
+    -moz-transition-property: font-size color border;
     transition-property: opacity font-size color border;
     transition-duration: 0.2s;
     opacity: 0.8;
