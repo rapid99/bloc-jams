@@ -28,6 +28,30 @@ var albumMarconi = {
     ]
 };
 
+var albumMMJ = {
+    title: 'Evil Urges',
+    artist: 'My Morning Jacket',
+    label: "ATO Records",
+    year: '2008',
+    albumArtUrl: 'assets/images/album_covers/22.png',
+    songs: [
+        {title: 'Evil Urges', duration: '5:12'},
+        {title: 'TMIGTS Pt 1', duration: '3:49'},
+        {title: 'Highly Suspicious', duration: '3:05'},
+        {title: 'I\'m Amazed', duration: '4:33'},
+        {title: 'Thank You Too!', duration: '4:27'},
+        {title: 'Sec Walkin\'', duration: '3:35'},
+        {title: 'Two Halves', duration: '2:34'},
+        {title: 'Librarian', duration: '4:26'},
+        {title: 'Look at You', duration: '3:28'},
+        {title: 'Aluminum Park', duration: '3:56'},
+        {title: 'Remnants', duration: '3:02'},
+        {title: 'Smokin\' from Shootin\'', duration: '5:02'},
+        {title: 'TMIGTS Pt 2', duration: '8:12'},
+        {title: 'Good Intentions', duration: '0:05'}
+    ]
+};
+
 //function below will generate song row content
 var createSongRow = function(songNumber, songName, songLength){
     var template = 
@@ -39,6 +63,12 @@ var createSongRow = function(songNumber, songName, songLength){
     
     return template;
 }
+
+    var albumTitle = document.getElementsByClassName('album-view-title')[0];
+    var albumArtist = document.getElementsByClassName('album-view-artist')[0];
+    var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
+    var albumImage = document.getElementsByClassName('album-cover-art')[0];
+    var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
 
 var setCurrentAlbum = function(album){
     //first, we are capturing all of the info we need from the HTML and setting them to a JS variable for use
@@ -66,5 +96,14 @@ var setCurrentAlbum = function(album){
 //load album when window loads
 window.onload = function(){
     setCurrentAlbum(albumPicasso);
-}
+    var albums = [albumPicasso, albumMarconi, albumMMJ];
+    var index = 1;
+    albumImage.addEventListener('click', function(event){
+        setCurrentAlbum(albums[index]);
+        index++;
+        if (index == albums.length){
+            index = 0;
+        }
+    });
+};
     
