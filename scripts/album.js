@@ -40,7 +40,7 @@ var createSongRow = function(songNumber, songName, songLength){
         + '<td class="song-item-duration">' + songLength + '</td>'
      + '</tr>';
     
-    return template;
+    return $(template);
 };
 
 var albumTitle = document.getElementsByClassName('album-view-title')[0];
@@ -50,26 +50,24 @@ var albumImage = document.getElementsByClassName('album-cover-art')[0];
 var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
 
 var setCurrentAlbum = function(album){
-    //first, we are capturing all of the info we need from the HTML and setting them to a JS variable for use
-    var albumTitle = document.getElementsByClassName('album-view-title')[0];
-    var albumArtist = document.getElementsByClassName('album-view-artist')[0];
-    var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
-    var albumImage = document.getElementsByClassName('album-cover-art')[0];
-    var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
+    var $albumTitle = $('.album-view-title');
+    var $albumArtist = $('.album-view-artist');
+    var $albumReleaseInfo = $('.album-view-release-info');
+    var $albumImage = $('.album-cover-art');
+    var $albumSongList = $('.album-view-song-list');
    
-    // variable updating    
-    //next we assign the values of the elements to appropriately named js values
-    albumTitle.firstChild.nodeValue = album.title;
-    albumArtist.firstChild.nodeValue = album.artist;
-    albumReleaseInfo.firstChild.nodeValue = album.year + ' ' + album.label;
-    albumImage.setAttribute('src', album.albumArtUrl);
+    $albumTitle.text(album.title);
+    $albumArtist.text(album.artist);
+    $albumReleaseInfo.text(album.year + ' ' + album.label);
+    $albumImage.attr('src', album.albumArtUrl);
     
-    //ensure the album song list is empty before working with it
-    albumSongList.innerHTML = '';
+    //empty album song list variable
+    $albumSongList.empty();
     
-    //loop through songs from album and ```insert into HTML via the createSongRow function
+    //loop through songs from album and insert into HTML via the createSongRow function
     for (var i = 0; i < album.songs.length; i++){
-        albumSongList.innerHTML += createSongRow(i + 1, album.songs[i].title, album.songs[i].duration);
+        var $newRow = createSongRow(i + 1, album.songs[i].title, album.songs[i].duration);
+        $albumSongList.append($newRow);
     };
 };
     
